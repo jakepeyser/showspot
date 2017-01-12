@@ -8,12 +8,12 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // React containers and components
-import Home from './components/Home';
+import App from './components/App';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Home} />
+      <Route path="/" component={App} />
     </Router>
   </Provider>,
   document.getElementById('app')

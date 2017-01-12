@@ -50,6 +50,10 @@ const common = {
         loader: process.env.NODE_ENV !== 'production' ?
           'style!css!sass' : ExtractTextPlugin.extract('style', 'css!sass'),
         include: PATHS.stylesheets
+      },
+      { // Inline SVGs where required in components
+        test: /\.svg$/,
+        loader: 'babel!svg-react'
       }
     ]
   }
