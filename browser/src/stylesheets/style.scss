@@ -1,0 +1,19 @@
+@import 'constants';
+
+body,html {
+  width : 100%;
+  height: 100%;
+  margin: 0 auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: black;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  max-width: $screen-lg;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  box-sizing: border-box;
+}
