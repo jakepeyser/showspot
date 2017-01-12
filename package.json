@@ -1,5 +1,5 @@
 {
-  "name": "showtify",
+  "name": "showspot",
   "version": "0.0.1",
   "description": "A Spotify music player that connects you with the shows where you want to be",
   "private": false,
@@ -19,10 +19,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jakepeyser/showtify.git"
+    "url": "https://github.com/jakepeyser/showspot.git"
   },
   "bugs": {
-    "url": "https://github.com/jakepeyser/showtify/issues"
+    "url": "https://github.com/jakepeyser/showspot/issues"
   },
   "dependencies": {
     "body-parser": "^1.15.x",

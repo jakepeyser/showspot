@@ -1,4 +1,4 @@
-# Showtify
+# ShowSpot
 
 _A Spotify music player that connects you with the shows where you want to be_
 
@@ -10,8 +10,8 @@ _A Spotify music player that connects you with the shows where you want to be_
 ### Installing
 
 ```sh
-git clone https://github.com/jakepeyser/showtify.git
-cd showtify
+git clone https://github.com/jakepeyser/showspot.git
+cd showspot
 npm install
 ```
 
