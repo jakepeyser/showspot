@@ -10,6 +10,7 @@
   justify-content: flex-start;
   background-color: $toolbar;
   a { // nav links
+    height: 100%;
     text-decoration: none;
   }
   @media screen and (max-width: $screen-sm) {

@@ -11,6 +11,7 @@ const path = require('path');
 const PATHS = {
   app: path.join(__dirname, 'browser/app'),
   build: path.join(__dirname, 'browser/build'),
+  favicon: path.join(__dirname, 'browser/src', 'favicon.ico'),
   stylesheets: path.join(__dirname, 'browser/src/stylesheets', 'style.scss'),
   html_template: path.join(__dirname, 'browser/src/index.html')
 };
@@ -36,6 +37,7 @@ const common = {
   plugins: [
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new HtmlWebpackPlugin({
+      favicon: PATHS.favicon,
       template: PATHS.html_template
     })
   ],
