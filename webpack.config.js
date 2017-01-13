@@ -11,12 +11,14 @@ const path = require('path');
 const PATHS = {
   app: path.join(__dirname, 'browser/app'),
   build: path.join(__dirname, 'browser/build'),
+  favicon: path.join(__dirname, 'browser/src', 'favicon.ico'),
   stylesheets: path.join(__dirname, 'browser/src/stylesheets', 'style.scss'),
   html_template: path.join(__dirname, 'browser/src/index.html')
 };
 
 // Vendor dependencies, isolated for chunking
 const vendorDependencies = [
+  'axios',
   'react', 'react-dom', 'react-helmet', 'react-router',
   'redux', 'react-redux', 'redux-logger', 'redux-thunk'
 ];
@@ -35,6 +37,7 @@ const common = {
   plugins: [
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new HtmlWebpackPlugin({
+      favicon: PATHS.favicon,
       template: PATHS.html_template
     })
   ],
@@ -50,6 +53,10 @@ const common = {
         loader: process.env.NODE_ENV !== 'production' ?
           'style!css!sass' : ExtractTextPlugin.extract('style', 'css!sass'),
         include: PATHS.stylesheets
+      },
+      { // Inline SVGs where required in components
+        test: /\.svg$/,
+        loader: 'babel!svg-react'
       }
     ]
   }

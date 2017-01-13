@@ -8,12 +8,15 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // React containers and components
-import Home from './components/Home';
+import App from './components/App';
+import Search from './components/search/SearchContainer';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Home} />
+      <Route path="/" component={App}>
+        <IndexRoute component={ Search } />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('app')

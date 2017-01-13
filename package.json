@@ -25,6 +25,7 @@
     "url": "https://github.com/jakepeyser/showspot/issues"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "body-parser": "^1.15.x",
     "chalk": "^1.1.x",
     "express": "^4.14.x",
@@ -37,7 +38,8 @@
     "redux": "^3.6.x",
     "redux-logger": "^2.7.x",
     "redux-thunk": "^2.1.x",
-    "request": "^2.76.x"
+    "request": "^2.76.x",
+    "svg-react-loader": "^0.3.7"
   },
   "devDependencies": {
     "babel": "^6.5.x",
