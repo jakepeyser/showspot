@@ -13,6 +13,7 @@ const PATHS = {
   build: path.join(__dirname, 'browser/build'),
   favicon: path.join(__dirname, 'browser/src', 'favicon.ico'),
   stylesheets: path.join(__dirname, 'browser/src/stylesheets', 'style.scss'),
+  images: path.join(__dirname, 'browser/src/images'),
   html_template: path.join(__dirname, 'browser/src/index.html')
 };
 
@@ -53,6 +54,11 @@ const common = {
         loader: process.env.NODE_ENV !== 'production' ?
           'style!css!sass' : ExtractTextPlugin.extract('style', 'css!sass'),
         include: PATHS.stylesheets
+      },
+      { // Transfer static files to build
+        test: /\.png$/,
+        loader: 'file?name=[path][name].[ext]',
+        include: PATHS.images
       },
       { // Inline SVGs where required in components
         test: /\.svg$/,

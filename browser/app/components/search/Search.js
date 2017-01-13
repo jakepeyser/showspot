@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { placeCommas } from '../utils';
 
 export default ({ artists, error, updateSearch }) => {
   return (
@@ -22,23 +23,27 @@ export default ({ artists, error, updateSearch }) => {
               artist.images[artist.images.length - 1].url :
               'https://d2gcv4sxt84gxu.cloudfront.net/assets/default-user-avatars-small-d5efadcf497ea7b3d86c6f8d148d66633a29ce78fa8391af628adf32d9989354.png';
             return (
-              <div className="artist" key={ artist.id }>
-                <div className="artist-icon">
-                  <img
-                    src={ imageURL }
-                    alt={ artist.name } />
+              <Link to={`/artists/${artist.id}`} key={ artist.id }>
+                <div className="artist">
+                  <div className="artist-icon">
+                    <img
+                      src={ imageURL }
+                      alt={ artist.name } />
+                  </div>
+                  <div className="artist-info">
+                    <p className="artist-name">{ artist.name }</p>
+                    <p className="artist-followers">
+                      { `${placeCommas(artist.followers.total)} followers` }
+                    </p>
+                  </div>
+                  <div className="artist-genres">
+                    { // Display the first five genres
+                      artist.genres.slice(0, 5)
+                        .map(genre => <p key={ genre }>{ genre }</p>)
+                    }
+                  </div>
                 </div>
-                <div className="artist-info">
-                  <p className="artist-name">{ artist.name }</p>
-                  <p className="artist-followers">{ `${artist.followers.total} followers` }</p>
-                </div>
-                <div className="artist-genres">
-                  { // Display the first five genres
-                    artist.genres.slice(0, 5)
-                      .map(genre => <p key={ genre }>{ genre }</p>)
-                  }
-                </div>
-              </div>
+              </Link>
             )
           }) :
           <p className="empty-search">No results</p>

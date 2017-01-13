@@ -38,12 +38,19 @@
   flex-direction: column;
   margin: 10px 0;
   p { margin: 0; }
-  > .artist {
+  > a > .artist {
     width: 100%;
     display: flex;
     flex-direction: row;
+    padding: 5px;
     + .artist {
       margin-top: 10px;
+    }
+    &:hover { // hover over artist behavior
+      background: $hover;
+      > .artist-info, .artist-genres > p {
+        color: white;
+      }
     }
     > .artist-icon { // artist pic
       width: 64px;
