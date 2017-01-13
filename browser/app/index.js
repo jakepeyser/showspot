@@ -9,11 +9,14 @@ import store from './store';
 
 // React containers and components
 import App from './components/App';
+import Search from './components/search/SearchContainer';
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App} />
+      <Route path="/" component={App}>
+        <IndexRoute component={ Search } />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('app')

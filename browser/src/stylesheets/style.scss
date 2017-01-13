@@ -1,5 +1,6 @@
 @import 'constants';
 @import 'navbar';
+@import 'search';
 
 body,html {
   width : 100%;
@@ -25,4 +26,8 @@ body,html {
   @media screen and (max-width: $screen-sm) {
     padding: 55px 15px 15px 15px;
   }
+}
+
+.error-text {
+  color: $error-text;
 }
