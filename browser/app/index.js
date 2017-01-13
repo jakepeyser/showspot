@@ -17,7 +17,9 @@ import Search from './components/search/SearchContainer';
 import Artist from './components/artist/ArtistContainer';
 
 // Entry/exit hooks for /artists/:id
-const artistEnter = (nextState) => store.dispatch(fetchArtist(nextState.params.artistId));
+const artistEnter = (nextState, replace, cb) => {
+  store.dispatch(fetchArtist(nextState.params.artistId, cb));
+}
 const artistLeave = (nextState) => store.dispatch(removeArtist());
 
 ReactDOM.render(

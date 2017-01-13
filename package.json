@@ -25,6 +25,7 @@
     "url": "https://github.com/jakepeyser/showspot/issues"
   },
   "dependencies": {
+    "async": "^2.1.4",
     "axios": "^0.15.3",
     "body-parser": "^1.15.x",
     "chalk": "^1.1.x",

@@ -2,6 +2,7 @@
 @import 'navbar';
 @import 'search';
 @import 'artist';
+@import 'show-list';
 
 body,html {
   width : 100%;
@@ -36,4 +37,27 @@ body,html {
 a {
   text-decoration: none;
   color: initial;
+}
+
+@mixin artist-icon-sizes ($size) {
+  width: $size;
+  height: $size;
+  min-width: $size;
+}
+.artist-icon { // artist pic
+  @include artist-icon-sizes(64px);
+  border: 2px solid $text-dark;
+  border-radius: 50%;
+  > img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+  @media screen and (max-width: $screen-md) {
+    @include artist-icon-sizes(48px);
+    border-width: 1px;
+  }
+  @media screen and (max-width: $screen-sm) {
+    @include artist-icon-sizes(32px);
+  }
 }

@@ -26,8 +26,14 @@ export default function reducer(artist = initialArtist, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchArtist = artistId => dispatch => {
+export const fetchArtist = (artistId, cb) => dispatch => {
   axios.get(`https://api.spotify.com/v1/artists/${artistId}`)
-    .then(res => dispatch(receivedArtist(res.data)))
-    .catch(err => console.error('Unable to retrieve artist', err));
+    .then(res => {
+      dispatch(receivedArtist(res.data))
+      cb();
+    })
+    .catch(err => {
+      console.error('Unable to retrieve artist', err)
+      cb(err);
+    });
 };

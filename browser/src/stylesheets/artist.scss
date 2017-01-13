@@ -3,13 +3,16 @@
   flex-direction: column;
 }
 
+@mixin artist-image-sizes ($size) {
+  width: $size;
+  height: $size;
+  min-width: $size;
+}
 .artist-data {
   display: flex;
   flex-direction: row;
   > .artist-image {
-    width: 250px;
-    height: 250px;
-    min-width: 250px;
+    @include artist-image-sizes(250px);
     > img {
       width: 100%;
       height: 100%;
@@ -51,6 +54,8 @@
       align-items: center;
       flex-wrap: wrap;
       margin-top: 5px;
+      max-height: 100px;
+      overflow: scroll;
       > p {
         border: 1px solid $secondary;
         margin: 2px;
@@ -62,9 +67,7 @@
   }
   @media screen and (max-width: $screen-md) {
     > .artist-image {
-      width: 200px;
-      height: 200px;
-      min-width: 200px;
+    @include artist-image-sizes(200px);
     }
     > .artist-metadata {
       > .artist-header > h2 {
@@ -80,9 +83,7 @@
   }
   @media screen and (max-width: $screen-sm) {
     > .artist-image {
-      width: 150px;
-      height: 150px;
-      min-width: 150px;
+    @include artist-image-sizes(150px);
     }
     > .artist-metadata {
       > .artist-header {
@@ -98,6 +99,30 @@
       > .artist-genres > p {
         font-size: 10px;
       }
+    }
+  }
+}
+
+.recommended-shows {
+  margin: 15px 0;
+  > h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  > hr {
+    margin: 5px 0 15px;
+  }
+  @media screen and (max-width: $screen-md) {
+    > h3 {
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width: $screen-sm) {
+    > h3 {
+      font-size: 14px;
+    }
+    > hr {
+      margin-bottom: 10px;
     }
   }
 }

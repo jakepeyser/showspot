@@ -1,0 +1,92 @@
+@mixin bandsintown-logo ($size) {
+  background-image: url('../images/bandsintown_tickets.png');
+  background-size: $size $size;
+  background-repeat: no-repeat;
+  width: $size;
+  height: $size;
+  min-width: $size;
+  transition: all .2s linear;
+}
+
+.show-list {
+  display: flex;
+  flex-direction: column;
+  > .show {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    p { margin-top: 0; margin-bottom: 0; }
+    > * + * { // all show info columns
+      width: 20%;
+      margin-left: 5px;
+      text-align: center;
+    }
+    + .show {
+      margin-top: 10px;
+    }
+    > .artist-pic-link { // artist icon website link
+      border-radius: 50%;
+    }
+    > h4 { // artist name
+      margin-top: 0; margin-bottom: 0;
+      font-size: 16px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    > p { // show text details
+      font-size: 14px;
+    }
+    .show-tickets {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: initial;
+      padding: 3px;
+      border: 2px solid #00b4b3;
+      transition: all .2s linear;
+      > .bandsintown-logo {
+        @include bandsintown-logo(20px);
+      }
+      > span {
+        margin-left: 5px;
+        font-size: 10px;
+      }
+      &:hover {
+        background: #00b4b3;
+        color: white;
+        > .bandsintown-logo {
+          filter: brightness(0) invert(100%);
+        }
+      }
+    }
+    @media screen and (max-width: $screen-md) {
+      > h4 {
+        font-size: 14px;
+      }
+      > p {
+        font-size: 12px;
+      }
+    }
+    @media screen and (max-width: $screen-sm) {
+      > * + * { // all show info columns
+        width: 25%;
+      }
+      > h4 {
+        font-size: 12px;
+      }
+      > p {
+        font-size: 10px;
+      }
+      .show-venue {
+        display: none;
+      }
+      .show-tickets {
+        padding: 2px;
+        > .bandsintown-logo {
+        @include bandsintown-logo(15px);
+        }
+      }
+    }
+  }
+}
