@@ -24,7 +24,6 @@ export default class SearchContainer extends React.Component {
     // Retrieve the new set of results based on the updated search value
     axios.get(`https://api.spotify.com/v1/search?type=artist&q=${text}`)
       .then(res => {
-        console.log(res);
         this.setState({
           artists: res.data.artists.items,
           error: null
