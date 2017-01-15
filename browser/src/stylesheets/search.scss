@@ -5,20 +5,6 @@
 
 .artist-search {
   width: 100%;
-  border: none;
-  border-bottom: 2px solid $text-dark;
-  transition: border-bottom .3s linear;
-  font-size: 22px;
-  &:focus {
-    outline: none;
-    border-bottom-color: #28A3E1;
-  }
-  @media screen and (max-width: $screen-md) {
-    font-size: 18px;
-  }
-  @media screen and (max-width: $screen-sm) {
-    font-size: 14px;
-  }
 }
 
 .empty-search {
@@ -38,23 +24,18 @@
   flex-direction: column;
   margin: 10px 0;
   p { margin: 0; }
-  > .artist {
+  > a > .artist {
     width: 100%;
     display: flex;
     flex-direction: row;
+    padding: 5px;
     + .artist {
       margin-top: 10px;
     }
-    > .artist-icon { // artist pic
-      width: 64px;
-      height: 64px;
-      min-width: 64px;
-      border: 2px solid $text-dark;
-      border-radius: 50%;
-      > img {
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
+    &:hover { // hover over artist behavior
+      background: $hover;
+      > .artist-info, .artist-genres > p {
+        color: white;
       }
     }
     > .artist-info { // name and followers
@@ -88,12 +69,6 @@
       }
     }
     @media screen and (max-width: $screen-md) {
-      > .artist-icon {
-        width: 48px;
-        height: 48px;
-        min-width: 48px;
-        border-width: 1px;
-      }
       > .artist-info {
         > .artist-name {
           font-size: 18px;
@@ -108,11 +83,6 @@
       }
     }
     @media screen and (max-width: $screen-sm) {
-      > .artist-icon {
-        width: 32px;
-        height: 32px;
-        min-width: 32px;
-      }
       > .artist-info {
         > .artist-name {
           font-size: 14px;
