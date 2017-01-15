@@ -23,22 +23,24 @@ router.get('/:artistId/recommended-shows', (req, res, next) => {
     }, (bitErr, results) => {
       if (bitErr) next(err);
 
-      // Reduce all shows into a single array, sort them by date, and return them
+      // Reduce all shows into a single array
+      // filter out the unrecognized artist arrors
+      // sand ort them by date
       const shows = results
         .reduce((allShows, artistShows) => {
           return allShows.concat(JSON.parse(artistShows));
         }, [])
+        .filter(show => !show.errors || show.errors[0] !== 'Unknown Artist')
         .sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-      
+
       // Examine shows for invalid location response
       // Otherwise, send shows as results
-      if (shows.length && shows[0].errors) {
-        let bitResErr = {};
-        if (shows[0].errors[0] === 'Unknown Location') {
-          bitResErr.status = 400;
-          bitResErr.message = 'Invalid location, please check your search query';
-        }
-        next(bitResErr);
+      if (shows.length && shows[0].errors &&
+          shows[0].errors[0] === 'Unknown Location') {
+        next({
+          status: 400,
+          message: 'Invalid location, please check your search query'
+        });
       } else {
         res.send(shows);
       }
