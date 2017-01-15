@@ -14,7 +14,7 @@ import { fetchArtist, removeArtist } from './redux/artist';
 // React containers and components
 import App from './components/App';
 import Search from './components/search/SearchContainer';
-import Artist from './components/artist/ArtistContainer';
+import Artist from './components/artist/Artist';
 
 // Entry/exit hooks for /artists/:id
 const artistEnter = (nextState, replace, cb) => {

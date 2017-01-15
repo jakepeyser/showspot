@@ -1,15 +1,17 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { placeCommas, parseDate } from '../utils';
+import { connect } from 'react-redux';
+import RecommendedShows from '../shows/RecommendedShowsContainer';
+import { placeCommas } from '../utils';
 
-export default ({ artist, recommendedShows, error }) => {
+const Artist = ({ artist, error }) => {
   if (!Object.keys(artist).length) return null;
 
   // Grab artist picture
   const imageURL = artist.images.length ?
     artist.images[0].url : 'https://byteturtle.eu/player/assets/img/default.png';
 
-  return !Object.keys(artist).length ? null :
+  return (
     <div id="artist">
       <Helmet title={ artist.name } />
       <div className="artist-data">
@@ -35,42 +37,11 @@ export default ({ artist, recommendedShows, error }) => {
           </div>
         </div>
       </div>
-      <div className="recommended-shows">
-        <h3>Recommended Shows</h3>
-        <hr />
-        { // Display error if shows could not be found
-          error ? <p className="error-text">{ error }</p> : null
-        }
-        {
-          recommendedShows.length ?
-            <div className="show-list">
-            { // Display all the recommended shows based on the current artist
-              recommendedShows.map(show => {
-                const showDate = parseDate(show.formatted_datetime)
-                return (
-                  <div className="show" key={ show.id }>
-                    <a className="artist-pic-link"
-                      href={ show.artists[0].website || show.artists[0].facebook_page_url }>
-                      <div className="artist-icon">
-                        <img
-                          src={ show.artists[0].thumb_url }
-                          alt={ show.artists[0].name } />
-                      </div>
-                    </a>
-                    <h4>{ show.artists[0].name }</h4>
-                    <p className="show-venue">{ show.venue.name }</p>
-                    <p className="show-date">{`${showDate.day} @ ${showDate.time}`}</p>
-                    <a className="show-tickets" href={ show.ticket_url }>
-                      <div className="bandsintown-logo"/>
-                      <span>Purchase Tickets</span>
-                    </a>
-                  </div>
-                )
-              })
-            }
-            </div> :
-            <p>No recommended shows are coming up in your area</p>
-        }
-      </div>
+      <RecommendedShows />
     </div>
+  )
 };
+
+const mapStateToProps = ({ artist }) => ({ artist })
+
+export default connect(mapStateToProps)(Artist);

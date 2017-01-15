@@ -39,6 +39,35 @@ a {
   color: initial;
 }
 
+input {
+  border: none;
+  border-bottom: 2px solid $text-dark;
+  transition: border-bottom .3s linear;
+  font-size: 22px;
+  &:focus {
+    outline: none;
+    border-bottom-color: #28A3E1;
+  }
+  @media screen and (max-width: $screen-md) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: $screen-sm) {
+    font-size: 14px;
+  }
+}
+
+button {
+  background: none;
+  border: 2px solid $toolbar;
+  font-size: 14px;
+  transition: all .3s linear;
+  &:hover {
+    background: $toolbar;
+    color: $text-light;
+    cursor: pointer;
+  }
+}
+
 @mixin artist-icon-sizes ($size) {
   width: $size;
   height: $size;
