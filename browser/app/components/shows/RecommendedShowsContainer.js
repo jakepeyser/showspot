@@ -9,6 +9,7 @@ class RecommendedShowsContainer extends React.Component {
     this.state = {
       recommendedShows: [],
       location: 'New York, NY',
+      loading: true,
       error: null
     }
     this.updateLocation = this.updateLocation.bind(this);
@@ -39,10 +40,12 @@ class RecommendedShowsContainer extends React.Component {
 
   getRecommendedShows() {
     const { artist } = this.props;
+    this.setState({ loading: true });
     axios.get(`api/artist/${artist.id}/recommended-shows?location=${this.state.location}`)
       .then(res => {
         this.setState({
           recommendedShows: res.data,
+          loading: false,
           error: null
         })
       })
@@ -59,6 +62,7 @@ class RecommendedShowsContainer extends React.Component {
         location={ this.state.location }
         locationChange={ this.updateLocation }
         searchLocation={ this.getRecommendedShows }
+        loading={ this.state.loading }
         error={ this.state.error }
       />
     )

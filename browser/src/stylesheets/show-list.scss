@@ -8,6 +8,21 @@
   transition: all .2s linear;
 }
 
+.no-results {
+  display: flex;
+  justify-content: center;
+  > .loading-graphic {
+    background-image: url('../images/sound_wave.gif');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    max-width: 400px;
+    filter: invert(100%);
+    transition: all .2s linear;
+  }
+}
+
 .show-list {
   display: flex;
   flex-direction: column;

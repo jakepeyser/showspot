@@ -1,7 +1,7 @@
 import React from 'react';
 import { parseDate } from '../utils';
 
-export default ({ recommendedShows, location, locationChange, searchLocation, error }) => {
+export default ({ recommendedShows, location, locationChange, searchLocation, loading, error }) => {
   return (
     <div className="recommended-shows">
       <div className="recommended-shows-header">
@@ -18,6 +18,12 @@ export default ({ recommendedShows, location, locationChange, searchLocation, er
       <hr />
       { // Display error if shows could not be found
         error ? <p className="error-text">{ error }</p> : null
+      }
+      {
+        !loading ?
+        <div className="loading-graphic">
+          <div />
+        </div> : null
       }
       {
         recommendedShows.length ?
@@ -47,7 +53,13 @@ export default ({ recommendedShows, location, locationChange, searchLocation, er
             })
           }
           </div> :
-          <p>{`No recommended shows are coming up in ${location}`}</p>
+          <div className="no-results">
+          {
+            loading ?
+              <div className="loading-graphic" /> :
+              <p>{`No recommended shows are coming up in ${location}`}</p>
+          }
+          </div>
       }
     </div>
   )

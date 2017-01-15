@@ -56,7 +56,7 @@ const common = {
         include: PATHS.stylesheets
       },
       { // Transfer static files to build
-        test: /\.png$/,
+        test: /\.(gif|png)$/,
         loader: 'file?name=[path][name].[ext]',
         include: PATHS.images
       },
