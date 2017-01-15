@@ -1,4 +1,4 @@
-// --> /artist
+// --> /location
 const express = require('express')
 const router = express();
 const request = require('request');
@@ -8,6 +8,8 @@ router.get('/reverse-geocode', (req, res, next) => {
   const { lat, lon } = req.query;
   const apiKey = process.env.GOOGLE_API_KEY;
   request(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`, (err, response, body) => {
+    if (err) next(err);
+
     // Look for a result with both city & state
     const places = JSON.parse(body).results;
     for (let i = 0; i < places.length; i++) {
@@ -19,12 +21,14 @@ router.get('/reverse-geocode', (req, res, next) => {
           state = comps.short_name;
         }
       })
+      // Send back result only if both city and state were found
       if (city && state) {
         return res.send({ city, state })
       } else {
         city = state = '';
       }
     }
+    res.status(404).send('Location not found for input coordinates')
   });
 })
 

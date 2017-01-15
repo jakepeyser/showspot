@@ -8,7 +8,7 @@ class RecommendedShowsContainer extends React.Component {
     super(props);
     this.state = {
       recommendedShows: [],
-      location: 'New York, NY',
+      location: '',
       loading: true,
       error: null
     }
@@ -17,8 +17,10 @@ class RecommendedShowsContainer extends React.Component {
   }
 
   componentDidMount() {
-    if (navigator.geolocation) {
+    if (navigator.geolocation) { // Check if browser supports geolocation
+      // Get the user's current lat/lon
       navigator.geolocation.getCurrentPosition((pos) => {
+        // Retrieve the city/state of the user based on their lat/lon
         axios.get(`api/location/reverse-geocode?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
           .then(({ data }) => {
             this.setState({ location: `${data.city}, ${data.state}` });
@@ -26,11 +28,14 @@ class RecommendedShowsContainer extends React.Component {
           })
           .catch(err => {
             console.error(err);
-            this.getRecommendedShows();
+            this.setState({ loading: false });
           })
+      }, (err) => { // Geolocation was blocked
+        console.error(err);
+        this.setState({ loading: false });
       });
     } else {
-      this.getRecommendedShows();
+      this.setState({ loading: false });
     }
   }
 
@@ -38,6 +43,7 @@ class RecommendedShowsContainer extends React.Component {
     this.setState({ location: loc });
   }
 
+  // Retrieve recommended shows based on the current artist and state.location
   getRecommendedShows() {
     const { artist } = this.props;
     this.setState({ loading: true });

@@ -20,13 +20,7 @@ export default ({ recommendedShows, location, locationChange, searchLocation, lo
         error ? <p className="error-text">{ error }</p> : null
       }
       {
-        !loading ?
-        <div className="loading-graphic">
-          <div />
-        </div> : null
-      }
-      {
-        recommendedShows.length ?
+        !loading && recommendedShows.length ?
           <div className="show-list">
           { // Display all the recommended shows based on the current artist
             recommendedShows.map(show => {
@@ -54,10 +48,16 @@ export default ({ recommendedShows, location, locationChange, searchLocation, lo
           }
           </div> :
           <div className="no-results">
-          {
+          { // Display loading gif or no results indicator
             loading ?
               <div className="loading-graphic" /> :
-              <p>{`No recommended shows are coming up in ${location}`}</p>
+              <div>
+              {
+                location ?
+                <p>{'No upcoming recommended shows in this area'}</p> :
+                <p>{'Search a location to find recommended shows in that area'}</p>
+              }
+              </div>
           }
           </div>
       }
