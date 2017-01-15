@@ -11,9 +11,10 @@ router.get('/:artistId/recommended-shows', (req, res, next) => {
     if (err) next(err);
 
     // Construct the Bandsintown events search URI for each related artist
+    const location = encodeURIComponent(req.query.location);
     const getRelatedArtists = JSON.parse(body).artists.map(arty => {
       return `http://api.bandsintown.com/artists/${arty.name}/events/search.json
-              ?location=New%20York,NY&radius=20&app_id=${process.env.BANDSINTOWN_APP_ID}&api_version=2.0&format=json`;
+              ?location=${location}&radius=20&app_id=${process.env.BANDSINTOWN_APP_ID}&api_version=2.0&format=json`;
     });
 
     // Make the Bandsintown calls in parallel and return results

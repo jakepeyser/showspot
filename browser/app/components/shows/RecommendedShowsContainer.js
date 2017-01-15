@@ -8,7 +8,7 @@ class RecommendedShowsContainer extends React.Component {
     super(props);
     this.state = {
       recommendedShows: [],
-      location: '',
+      location: 'New York, NY',
       error: null
     }
     this.updateLocation = this.updateLocation.bind(this);
@@ -18,12 +18,17 @@ class RecommendedShowsContainer extends React.Component {
   componentDidMount() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
-        console.log("Latitude: " + pos.coords.latitude + " Longitude: " + pos.coords.longitude );
-        this.setState({ location: 'New York, NY' });
-        this.getRecommendedShows();
+        axios.get(`api/location/reverse-geocode?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
+          .then(({ data }) => {
+            this.setState({ location: `${data.city}, ${data.state}` });
+            this.getRecommendedShows();
+          })
+          .catch(err => {
+            console.error(err);
+            this.getRecommendedShows();
+          })
       });
     } else {
-      this.setState({ location: 'New York, NY' });
       this.getRecommendedShows();
     }
   }
@@ -34,8 +39,7 @@ class RecommendedShowsContainer extends React.Component {
 
   getRecommendedShows() {
     const { artist } = this.props;
-    console.log(this.state.location)
-    axios.get(`api/artist/${artist.id}/recommended-shows`)
+    axios.get(`api/artist/${artist.id}/recommended-shows?location=${this.state.location}`)
       .then(res => {
         this.setState({
           recommendedShows: res.data,
