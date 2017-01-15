@@ -10,7 +10,7 @@ class RecommendedShowsContainer extends React.Component {
       recommendedShows: [],
       location: '',
       loading: true,
-      error: null
+      error: ''
     }
     this.updateLocation = this.updateLocation.bind(this);
     this.getRecommendedShows = this.getRecommendedShows.bind(this);
@@ -52,12 +52,19 @@ class RecommendedShowsContainer extends React.Component {
         this.setState({
           recommendedShows: res.data,
           loading: false,
-          error: null
+          error: ''
         })
       })
       .catch(err => {
         console.error(err);
-        this.setState({ error: 'Unable to retrieve recommended shows at this time' })
+        // Parse and display relevant error message based on the response
+        let errMsg = `Unable to retrieve recommended shows at this time
+                      ${err.response.status === 400 ? ` - ${err.response.data}` : ''}`
+        this.setState({
+          recommendedShows: [],
+          error: errMsg,
+          loading: false
+        })
       })
   }
 

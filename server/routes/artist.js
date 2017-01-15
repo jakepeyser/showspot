@@ -29,8 +29,19 @@ router.get('/:artistId/recommended-shows', (req, res, next) => {
           return allShows.concat(JSON.parse(artistShows));
         }, [])
         .sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-
-      res.send(shows)
+      
+      // Examine shows for invalid location response
+      // Otherwise, send shows as results
+      if (shows.length && shows[0].errors) {
+        let bitResErr = {};
+        if (shows[0].errors[0] === 'Unknown Location') {
+          bitResErr.status = 400;
+          bitResErr.message = 'Invalid location, please check your search query';
+        }
+        next(bitResErr);
+      } else {
+        res.send(shows);
+      }
     });
   })
 })

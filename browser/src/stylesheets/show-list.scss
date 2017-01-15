@@ -11,6 +11,8 @@
 .no-results {
   display: flex;
   justify-content: center;
+  font-size: 14px;
+  text-align: center;
   > .loading-graphic {
     background-image: url('../images/sound_wave.gif');
     background-size: 100% 100%;

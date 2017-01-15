@@ -9,6 +9,7 @@ export default ({ recommendedShows, location, locationChange, searchLocation, lo
         <div className="shows-location">
           <input className="location-search"
             type="text" value={ location }
+            placeholder="City, State"
             onChange={ (evt) => locationChange(evt.target.value) }/>
           <button onClick={ () => searchLocation() } >
             Submit
@@ -16,9 +17,6 @@ export default ({ recommendedShows, location, locationChange, searchLocation, lo
         </div>
       </div>
       <hr />
-      { // Display error if shows could not be found
-        error ? <p className="error-text">{ error }</p> : null
-      }
       {
         !loading && recommendedShows.length ?
           <div className="show-list">
@@ -52,10 +50,16 @@ export default ({ recommendedShows, location, locationChange, searchLocation, lo
             loading ?
               <div className="loading-graphic" /> :
               <div>
-              {
+              { // If no location, prompt the user to enter a search destination
                 location ?
-                <p>{'No upcoming recommended shows in this area'}</p> :
-                <p>{'Search a location to find recommended shows in that area'}</p>
+                  <div>
+                  { // Display error if API call failed, otherwise no shows found
+                    error ?
+                      <p className="error-text">{ error }</p> :
+                      <p>No upcoming recommended shows in this area</p>
+                  }
+                  </div> :
+                  <p>{'Search a location to find recommended shows in that area'}</p>
               }
               </div>
           }
