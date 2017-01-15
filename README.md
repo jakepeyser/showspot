@@ -6,6 +6,7 @@ _A Spotify music player that connects you with the shows where you want to be_
 
 ### Prerequisites
 - [Node.js and npm](https://nodejs.org/en/)
+- [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ### Installing
 
@@ -15,7 +16,14 @@ cd showspot
 npm install
 ```
 
-This will copy the project to your local machine and install all runtime dependencies, as well as Webpack build and Mocha/Chai/Enzyme/Nightwatch testing tools.
+This will copy the project to your local machine and install all runtime dependencies, as well as Webpack build tools.
+
+You will also need to create a `.env` file at the root of the project to store your Bandsintown app ID and Goodle API credentials for development. It should look something like this:
+
+```sh
+BANDSINTOWN_APP_ID = showspot-dev
+GOOGLE_API_KEY = XXX
+```
 
 ### Running the app
 
@@ -41,3 +49,5 @@ npm install
 npm run build
 npm start
 ```
+
+Also, make sure to add the `BANDSINTOWN_APP_ID` and `GOOGLE_API_KEY` environment variables with their respective values to your production environment.
