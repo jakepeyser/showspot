@@ -1,23 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="95px" height="95px" viewBox="0 0 95 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>
-        <path d="M45,27 C36.7,27 30,33.7 30,41.9 C30,50.1 36.7,56.8 45,56.8 C53.3,56.8 60,50.1 60,41.9 C60,33.7 53.3,27 45,27 Z" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-5" y="-5" width="40" height="39.8">
-            <rect x="25" y="22" width="40" height="39.8" fill="white"></rect>
-            <use xlink:href="#path-1" fill="black"></use>
-        </mask>
-        <path d="M45.5,0 C21.9833333,0 3,18.9833333 3,42.2166667 C3,65.45 21.9833333,84.4333333 45.5,84.4333333 C69.0166667,84.4333333 88,65.45 88,42.2166667 C88,18.9833333 69.0166667,0 45.5,0 Z" id="path-3"></path>
-        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-5" y="-5" width="95" height="94.4333333">
-            <rect x="-2" y="-5" width="95" height="94.4333333" fill="white"></rect>
-            <use xlink:href="#path-3" fill="black"></use>
-        </mask>
-    </defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="30px" viewBox="0 0 38 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="showspot" transform="translate(2.000000, 5.000000)">
-            <path d="M45,34 C40.5733333,34 37,37.5733333 37,41.9466667 C37,46.32 40.5733333,49.8933333 45,49.8933333 C49.4266667,49.8933333 53,46.32 53,41.9466667 C53,37.5733333 49.4266667,34 45,34 Z" id="Iris" fill="#000000"></path>
-            <use id="Round-Eye" stroke="#000000" mask="url(#mask-2)" stroke-width="10" xlink:href="#path-1"></use>
-            <path d="M89.5,39.775 C69,-3.925 21,-3.925 0.4,39.775 C0.4,39.775 0,40.675 0,42.275 C0,43.475 0.4,44.175 0.4,44.175 C21,87.875 69,87.875 89.5,44.175 C89.5,44.175 89.9,43.175 90,41.975 C90,40.775 89.5,39.775 89.5,39.775 Z M45.75,67.975 C31.536,67.975 20,56.439 20,42.225 C20,28.011 31.536,16.475 45.75,16.475 C59.964,16.475 71.5,28.011 71.5,42.225 C71.5,56.439 59.964,67.975 45.75,67.975 Z" id="Outer-Eye" fill="#000000"></path>
-            <use id="Round-Eye" stroke="#000000" mask="url(#mask-4)" stroke-width="10" xlink:href="#path-3"></use>
+        <g id="ShowSpot">
+            <path d="M37.7888889,14.0883333 C29.1333333,-4.36277778 8.86666667,-4.36277778 0.168888889,14.0883333 C0.168888889,14.0883333 0,14.4683333 0,15.1438889 C0,15.6505556 0.168888889,15.9461111 0.168888889,15.9461111 C8.86666667,34.3972222 29.1333333,34.3972222 37.7888889,15.9461111 C37.7888889,15.9461111 37.9577778,15.5238889 38,15.0172222 C38,14.5105556 37.7888889,14.0883333 37.7888889,14.0883333 Z M19,27 C12.376,27 7,21.624 7,15 C7,8.376 12.376,3 19,3 C25.624,3 31,8.376 31,15 C31,21.624 25.624,27 19,27 Z" id="Eye" fill="#FFF" fill-rule="nonzero"></path>
+            <circle id="Outer" stroke="#FFF" cx="19" cy="15" r="9.5"></circle>
+            <circle id="Inner" stroke="#FFF" cx="19" cy="15" r="6.5"></circle>
+            <path d="M15,15 C15,17.209139 16.790861,19 19,19 C21.209139,19 23,17.209139 23,15 C23,12.790861 21.209139,11 19,11 C19,13.209139 17.209139,15 15,15 Z" id="Iris" fill="#FFF"></path>
         </g>
     </g>
 </svg>

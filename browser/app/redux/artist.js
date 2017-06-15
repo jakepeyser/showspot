@@ -26,8 +26,11 @@ export default function reducer(artist = initialArtist, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchArtist = (artistId, cb) => dispatch => {
-  axios.get(`https://api.spotify.com/v1/artists/${artistId}`)
+export const fetchArtist = (artistId, cb) => (dispatch, getState) => {
+  axios.get(
+    `https://api.spotify.com/v1/artists/${artistId}`,
+    { headers: {'Authorization': `Bearer ${getState().token}`} }
+  )
     .then(res => {
       dispatch(receivedArtist(res.data))
       cb();

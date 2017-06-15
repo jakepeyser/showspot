@@ -10,22 +10,28 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import { fetchArtist, removeArtist } from './redux/artist';
+import { fetchToken } from './redux/auth';
 
 // React containers and components
 import App from './components/App';
 import Search from './components/search/SearchContainer';
 import Artist from './components/artist/Artist';
 
+// Get Spotify token
+const appEnter = (nextState, replace, cb) => {
+  store.dispatch(fetchToken(cb));
+};
+
 // Entry/exit hooks for /artists/:id
 const artistEnter = (nextState, replace, cb) => {
   store.dispatch(fetchArtist(nextState.params.artistId, cb));
-}
+};
 const artistLeave = (nextState) => store.dispatch(removeArtist());
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={App}>
+      <Route path="/" component={App} onEnter={ appEnter }>
         <Route path="/artists/:artistId" component= { Artist }
           onEnter={ artistEnter } onLeave={ artistLeave } />
         <IndexRoute component={ Search } />

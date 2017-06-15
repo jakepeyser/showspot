@@ -1,4 +1,5 @@
 import React from'react';
+import { connect } from 'react-redux';
 import Search from './Search';
 import axios from 'axios';
 
@@ -7,7 +8,7 @@ const initialState = {
   error: null
 };
 
-export default class SearchContainer extends React.Component {
+class SearchContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = initialState;
@@ -20,9 +21,12 @@ export default class SearchContainer extends React.Component {
       this.setState(initialState);
       return;
     }
-    
+
     // Retrieve the new set of results based on the updated search value
-    axios.get(`https://api.spotify.com/v1/search?type=artist&q=${text}`)
+    axios.get(
+      `https://api.spotify.com/v1/search?type=artist&q=${text}`,
+      { headers: {'Authorization': `Bearer ${this.props.token}`} }
+    )
       .then(res => {
         this.setState({
           artists: res.data.artists.items,
@@ -45,3 +49,7 @@ export default class SearchContainer extends React.Component {
     )
   }
 }
+
+const mapStateToProps = ({ token }) => ({ token })
+
+export default connect(mapStateToProps)(SearchContainer);
