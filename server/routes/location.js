@@ -8,7 +8,7 @@ router.get('/reverse-geocode', (req, res, next) => {
   const { lat, lon } = req.query;
   const apiKey = process.env.GOOGLE_API_KEY;
   request(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&key=${apiKey}`, (err, response, body) => {
-    if (err) next(err);
+    if (err) return next(err);
 
     // Look for a result with both city & state
     const places = JSON.parse(body).results;
