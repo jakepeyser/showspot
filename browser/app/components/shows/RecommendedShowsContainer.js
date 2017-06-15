@@ -45,9 +45,12 @@ class RecommendedShowsContainer extends React.Component {
 
   // Retrieve recommended shows based on the current artist and state.location
   getRecommendedShows() {
-    const { artist } = this.props;
+    const { artist, token } = this.props;
     this.setState({ loading: true });
-    axios.get(`api/artist/${artist.id}/recommended-shows?location=${this.state.location}`)
+    axios.get(
+      `api/artist/${artist.id}/recommended-shows?location=${this.state.location}`,
+      { headers: {'Authorization': token} }
+    )
       .then(res => {
         this.setState({
           recommendedShows: res.data,
@@ -82,6 +85,6 @@ class RecommendedShowsContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({ artist }) => ({ artist })
+const mapStateToProps = ({ artist, token }) => ({ artist, token })
 
 export default connect(mapStateToProps)(RecommendedShowsContainer);
